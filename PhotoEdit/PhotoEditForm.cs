@@ -21,5 +21,15 @@ namespace PhotoEdit
         {
 
         }
+
+        private void BrightnessBar_Scroll(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InvertButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
