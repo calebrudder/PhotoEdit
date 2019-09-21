@@ -84,8 +84,9 @@
             // selectRootFolderToolStripMenuItem
             // 
             this.selectRootFolderToolStripMenuItem.Name = "selectRootFolderToolStripMenuItem";
-            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.selectRootFolderToolStripMenuItem.Text = "Select Root Folder";
+            this.selectRootFolderToolStripMenuItem.Click += new System.EventHandler(this.SelectRootFolderToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
