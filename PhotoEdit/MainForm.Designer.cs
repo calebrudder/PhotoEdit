@@ -84,7 +84,7 @@
             // selectRootFolderToolStripMenuItem
             // 
             this.selectRootFolderToolStripMenuItem.Name = "selectRootFolderToolStripMenuItem";
-            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
             this.selectRootFolderToolStripMenuItem.Text = "Select Root Folder";
             this.selectRootFolderToolStripMenuItem.Click += new System.EventHandler(this.SelectRootFolderToolStripMenuItem_Click);
             // 
@@ -140,10 +140,12 @@
             // 
             this.currentDirectoryImagesView.HideSelection = false;
             this.currentDirectoryImagesView.Location = new System.Drawing.Point(271, 31);
+            this.currentDirectoryImagesView.MultiSelect = false;
             this.currentDirectoryImagesView.Name = "currentDirectoryImagesView";
             this.currentDirectoryImagesView.Size = new System.Drawing.Size(733, 724);
             this.currentDirectoryImagesView.TabIndex = 2;
             this.currentDirectoryImagesView.UseCompatibleStateImageBehavior = false;
+            this.currentDirectoryImagesView.ItemActivate += new System.EventHandler(this.CurrentDirectoryImagesView_ItemActivate);
             // 
             // MainForm
             // 
