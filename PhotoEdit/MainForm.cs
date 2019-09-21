@@ -35,6 +35,9 @@ namespace PhotoEdit
 
             PopulateDirectoryTreeView(rootDir, currentDirectoryTreeView.Nodes);
             currentDirectoryTreeView.Nodes[0].Expand();
+
+            // "Select" the first node so the first directory is populated with images
+            currentDirectoryTreeView.SelectedNode = currentDirectoryTreeView.Nodes[0];
         }
         
         private void InitializeImageLists()
@@ -44,6 +47,10 @@ namespace PhotoEdit
 
             smallImageList.ImageSize = new Size(64, 64);
             largeImageList.ImageSize = new Size(120, 120);
+
+            // https://social.msdn.microsoft.com/Forums/en-US/19c116bf-6261-4ba3-84a9-71d2fda4e030/help-regarding-thumbnail-images-in-listview?forum=winforms
+            smallImageList.ColorDepth = ColorDepth.Depth32Bit;
+            largeImageList.ColorDepth = ColorDepth.Depth32Bit;
         }
 
         private void InitializeListView()
@@ -188,8 +195,8 @@ namespace PhotoEdit
 
             if (result == DialogResult.OK)
             {
-                InitializeTreeView(browser.SelectedPath);
                 ClearImageLists();
+                InitializeTreeView(browser.SelectedPath);
             }
         }
     }
