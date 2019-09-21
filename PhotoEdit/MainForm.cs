@@ -86,38 +86,58 @@ namespace PhotoEdit
                 FileInfo[] imageFiles = rootDir.GetFiles("*.jpg");
                 foreach (FileInfo file in imageFiles)
                 {
-                    try
+                    Image img = GetImageFromFile(file.FullName);
+
+                    if (img == null)
                     {
-                        // Get file data
-                        byte[] bytes = File.ReadAllBytes(file.FullName);
-                        MemoryStream ms = new MemoryStream(bytes);
-                        Image img = Image.FromStream(ms);
-
-                        int newImageIndex = -1;
-
-                        // Add image to image list
-                        Invoke((Action)delegate
-                        {
-                            newImageIndex = AddImageToImageLists(img);
-                        });
-
-                        // Create ListViewItem from file data
-                        ListViewItem item = new ListViewItem(file.Name, newImageIndex);
-                        item.SubItems.Add(file.LastAccessTime.ToString());
-                        item.SubItems.Add(ConvertBytesToString(file.Length));
-
-                        // Add ListViewItem to ListView
-                        Invoke((Action)delegate
-                        {
-                            currentDirectoryImagesView.Items.Add(item);
-                        });
+                        // Image could not be read from file
+                        continue;
                     }
-                    catch
+
+                    int newImageIndex = -1;
+
+                    // Add image to image list
+                    Invoke((Action)delegate
                     {
-                        Console.WriteLine("Could not read " + file.FullName);
-                    }
+                        newImageIndex = AddImageToImageLists(img);
+                    });
+
+                    ListViewItem item = CreateListViewItem(file, newImageIndex);
+
+                    // Add ListViewItem to ListView
+                    Invoke((Action)delegate
+                    {
+                        currentDirectoryImagesView.Items.Add(item);
+                    });
                 }
             });
+        }
+
+        private Image GetImageFromFile(string filePath)
+        {
+            try
+            {
+                // Get file data
+                byte[] bytes = File.ReadAllBytes(filePath);
+                MemoryStream ms = new MemoryStream(bytes);
+                Image img = Image.FromStream(ms);
+                return img;
+            }
+            catch
+            {
+                Console.WriteLine("Could not read " + filePath);
+                return null;
+            }
+        }
+
+        private ListViewItem CreateListViewItem(FileInfo file, int imageIndex)
+        {
+            // Create ListViewItem from file data
+            ListViewItem item = new ListViewItem(file.Name, imageIndex);
+            item.SubItems.Add(file.LastAccessTime.ToString());
+            item.SubItems.Add(ConvertBytesToString(file.Length));
+
+            return item;
         }
 
         // First converts the number of bytes to either 
