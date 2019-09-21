@@ -147,6 +147,7 @@ namespace PhotoEdit
             ListViewItem item = new ListViewItem(file.Name, imageIndex);
             item.SubItems.Add(file.LastAccessTime.ToString());
             item.SubItems.Add(ConvertBytesToString(file.Length));
+            item.Tag = file.FullName;
 
             return item;
         }
@@ -198,6 +199,15 @@ namespace PhotoEdit
                 ClearImageLists();
                 InitializeTreeView(browser.SelectedPath);
             }
+        }
+
+        private void CurrentDirectoryImagesView_ItemActivate(object sender, EventArgs e)
+        {
+            ListViewItem selectedImage = currentDirectoryImagesView.SelectedItems[0];
+
+            PhotoEditForm photoEditForm = new PhotoEditForm();
+
+            photoEditForm.ShowDialog();
         }
     }
 }
