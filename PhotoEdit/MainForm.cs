@@ -20,22 +20,23 @@ namespace PhotoEdit
         public MainForm()
         {
             InitializeComponent();
-            InitializeTreeView();
+            
+            // https://stackoverflow.com/a/116061
+            InitializeTreeView(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures));
             InitializeImageLists();
             InitializeListView();
         }
 
-
-        private void InitializeTreeView()
+        private void InitializeTreeView(string rootPath)
         {
-            // https://stackoverflow.com/a/116061
-            string picturesPath = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            rootDir = new DirectoryInfo(picturesPath);
+            currentDirectoryTreeView.Nodes.Clear();
+
+            rootDir = new DirectoryInfo(rootPath);
 
             PopulateDirectoryTreeView(rootDir, currentDirectoryTreeView.Nodes);
             currentDirectoryTreeView.Nodes[0].Expand();
         }
-
+        
         private void InitializeImageLists()
         {
             smallImageList = new ImageList();
@@ -60,6 +61,7 @@ namespace PhotoEdit
             currentDirectoryImagesView.View = View.Details;
         }
 
+        // Recursively discovers all the subdirectories from one root directory
         private void PopulateDirectoryTreeView(DirectoryInfo rootDir, TreeNodeCollection nodes)
         {
             string dirName = rootDir.Name;
@@ -74,11 +76,12 @@ namespace PhotoEdit
 
         private async void CurrentDirectoryTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            ClearImageLists();
             string dirPath = (string)currentDirectoryTreeView.SelectedNode.Tag;
-            await PopulateImageList(dirPath);
+            await PopulateImages(dirPath);
         }
 
-        private async Task PopulateImageList(string dirPath)
+        private async Task PopulateImages(string dirPath)
         {
             await Task.Run(() =>
             {
@@ -130,6 +133,7 @@ namespace PhotoEdit
             }
         }
 
+        // Creates a ListViewItem with a Name, LastAccessTime, and size of file
         private ListViewItem CreateListViewItem(FileInfo file, int imageIndex)
         {
             // Create ListViewItem from file data
@@ -167,6 +171,26 @@ namespace PhotoEdit
             smallImageList.Images.Add(img);
             largeImageList.Images.Add(img);
             return smallImageList.Images.Count - 1;
+        }
+
+        private void ClearImageLists()
+        {
+            largeImageList.Images.Clear();
+            smallImageList.Images.Clear();
+        }
+
+        private void SelectRootFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            // Open a folder picker set root dir to that file. 
+            FolderBrowserDialog browser = new FolderBrowserDialog();
+            browser.RootFolder = Environment.SpecialFolder.MyComputer;
+            DialogResult result = browser.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                InitializeTreeView(browser.SelectedPath);
+                ClearImageLists();
+            }
         }
     }
 }
