@@ -235,8 +235,9 @@ namespace PhotoEdit
         private void CurrentDirectoryImagesView_ItemActivate(object sender, EventArgs e)
         {
             ListViewItem selectedImage = currentDirectoryImagesView.SelectedItems[0];
+            string filePath = (string)selectedImage.Tag;
 
-            PhotoEditForm photoEditForm = new PhotoEditForm();
+            PhotoEditForm photoEditForm = new PhotoEditForm(filePath);
 
             photoEditForm.ShowDialog();
         }

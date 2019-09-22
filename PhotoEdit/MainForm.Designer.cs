@@ -33,6 +33,7 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.locateOnDiskToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.selectRootFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.viewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.detailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -42,15 +43,23 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentDirectoryImagesView = new System.Windows.Forms.ListView();
             this.readImagesProgressBar = new System.Windows.Forms.ProgressBar();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.mainMenuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.Panel1.SuspendLayout();
+            this.splitContainer.Panel2.SuspendLayout();
+            this.splitContainer.SuspendLayout();
             this.SuspendLayout();
             // 
             // currentDirectoryTreeView
             // 
-            this.currentDirectoryTreeView.Location = new System.Drawing.Point(12, 55);
+            this.currentDirectoryTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.currentDirectoryTreeView.Location = new System.Drawing.Point(3, 3);
+            this.currentDirectoryTreeView.MinimumSize = new System.Drawing.Size(100, 100);
             this.currentDirectoryTreeView.Name = "currentDirectoryTreeView";
-            this.currentDirectoryTreeView.Size = new System.Drawing.Size(253, 700);
+            this.currentDirectoryTreeView.Size = new System.Drawing.Size(324, 694);
             this.currentDirectoryTreeView.TabIndex = 0;
             this.currentDirectoryTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.CurrentDirectoryTreeView_AfterSelect);
             // 
@@ -63,7 +72,7 @@
             this.helpToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(1016, 28);
+            this.mainMenuStrip.Size = new System.Drawing.Size(1016, 30);
             this.mainMenuStrip.TabIndex = 1;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
@@ -75,7 +84,7 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // locateOnDiskToolStripMenuItem
@@ -90,9 +99,14 @@
             // selectRootFolderToolStripMenuItem
             // 
             this.selectRootFolderToolStripMenuItem.Name = "selectRootFolderToolStripMenuItem";
-            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.selectRootFolderToolStripMenuItem.Text = "Select Root Folder";
             this.selectRootFolderToolStripMenuItem.Click += new System.EventHandler(this.SelectRootFolderToolStripMenuItem_Click);
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
             // 
             // exitToolStripMenuItem
             // 
@@ -108,27 +122,27 @@
             this.smallToolStripMenuItem,
             this.largeToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // detailToolStripMenuItem
             // 
             this.detailToolStripMenuItem.Name = "detailToolStripMenuItem";
-            this.detailToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.detailToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.detailToolStripMenuItem.Text = "Details";
             this.detailToolStripMenuItem.Click += new System.EventHandler(this.ViewSubMenuItem_Click);
             // 
             // smallToolStripMenuItem
             // 
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
-            this.smallToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.smallToolStripMenuItem.Text = "Small";
             this.smallToolStripMenuItem.Click += new System.EventHandler(this.ViewSubMenuItem_Click);
             // 
             // largeToolStripMenuItem
             // 
             this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
-            this.largeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.largeToolStripMenuItem.Size = new System.Drawing.Size(138, 26);
             this.largeToolStripMenuItem.Text = "Large";
             this.largeToolStripMenuItem.Click += new System.EventHandler(this.ViewSubMenuItem_Click);
             // 
@@ -137,23 +151,27 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(133, 26);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // currentDirectoryImagesView
             // 
+            this.currentDirectoryImagesView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.currentDirectoryImagesView.HideSelection = false;
-            this.currentDirectoryImagesView.Location = new System.Drawing.Point(271, 55);
+            this.currentDirectoryImagesView.Location = new System.Drawing.Point(3, 3);
+            this.currentDirectoryImagesView.MinimumSize = new System.Drawing.Size(100, 100);
             this.currentDirectoryImagesView.MultiSelect = false;
             this.currentDirectoryImagesView.Name = "currentDirectoryImagesView";
-            this.currentDirectoryImagesView.Size = new System.Drawing.Size(733, 700);
+            this.currentDirectoryImagesView.Size = new System.Drawing.Size(652, 694);
             this.currentDirectoryImagesView.TabIndex = 2;
             this.currentDirectoryImagesView.UseCompatibleStateImageBehavior = false;
             this.currentDirectoryImagesView.ItemActivate += new System.EventHandler(this.CurrentDirectoryImagesView_ItemActivate);
@@ -166,25 +184,42 @@
             this.readImagesProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.readImagesProgressBar.TabIndex = 3;
             // 
-            // toolStripMenuItem1
+            // splitContainer
             // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
+            this.splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.splitContainer.Location = new System.Drawing.Point(12, 55);
+            this.splitContainer.Name = "splitContainer";
+            // 
+            // splitContainer.Panel1
+            // 
+            this.splitContainer.Panel1.Controls.Add(this.currentDirectoryTreeView);
+            // 
+            // splitContainer.Panel2
+            // 
+            this.splitContainer.Panel2.Controls.Add(this.currentDirectoryImagesView);
+            this.splitContainer.Size = new System.Drawing.Size(992, 700);
+            this.splitContainer.SplitterDistance = 330;
+            this.splitContainer.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 767);
+            this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.readImagesProgressBar);
-            this.Controls.Add(this.currentDirectoryImagesView);
-            this.Controls.Add(this.currentDirectoryTreeView);
             this.Controls.Add(this.mainMenuStrip);
             this.MainMenuStrip = this.mainMenuStrip;
             this.Name = "MainForm";
             this.Text = "Photo Editor";
             this.mainMenuStrip.ResumeLayout(false);
             this.mainMenuStrip.PerformLayout();
+            this.splitContainer.Panel1.ResumeLayout(false);
+            this.splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,6 +242,7 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ProgressBar readImagesProgressBar;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.SplitContainer splitContainer;
     }
 }
 
