@@ -293,5 +293,11 @@ namespace PhotoEdit
                 currentDirectoryImagesView.View = View.SmallIcon;
             }
         }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AboutBox about = new AboutBox();
+            about.ShowDialog();
+        }
     }
 }
