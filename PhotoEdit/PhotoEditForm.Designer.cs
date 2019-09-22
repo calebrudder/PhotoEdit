@@ -31,11 +31,13 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.userControls = new System.Windows.Forms.GroupBox();
-            this.brightnessBar = new System.Windows.Forms.TrackBar();
-            this.colorButton = new System.Windows.Forms.Button();
             this.invertButton = new System.Windows.Forms.Button();
+            this.colorButton = new System.Windows.Forms.Button();
+            this.brightnessBar = new System.Windows.Forms.TrackBar();
+            this.imageView = new System.Windows.Forms.PictureBox();
             this.userControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageView)).BeginInit();
             this.SuspendLayout();
             // 
             // cancelButton
@@ -70,6 +72,25 @@
             this.userControls.TabIndex = 2;
             this.userControls.TabStop = false;
             // 
+            // invertButton
+            // 
+            this.invertButton.Location = new System.Drawing.Point(657, 55);
+            this.invertButton.Name = "invertButton";
+            this.invertButton.Size = new System.Drawing.Size(151, 41);
+            this.invertButton.TabIndex = 4;
+            this.invertButton.Text = "Invert";
+            this.invertButton.UseVisualStyleBackColor = true;
+            this.invertButton.Click += new System.EventHandler(this.InvertButton_Click);
+            // 
+            // colorButton
+            // 
+            this.colorButton.Location = new System.Drawing.Point(425, 55);
+            this.colorButton.Name = "colorButton";
+            this.colorButton.Size = new System.Drawing.Size(151, 41);
+            this.colorButton.TabIndex = 3;
+            this.colorButton.Text = "Color...";
+            this.colorButton.UseVisualStyleBackColor = true;
+            // 
             // brightnessBar
             // 
             this.brightnessBar.BackColor = System.Drawing.SystemColors.Control;
@@ -81,30 +102,20 @@
             this.brightnessBar.Value = 5;
             this.brightnessBar.Scroll += new System.EventHandler(this.BrightnessBar_Scroll);
             // 
-            // colorButton
+            // imageView
             // 
-            this.colorButton.Location = new System.Drawing.Point(425, 55);
-            this.colorButton.Name = "colorButton";
-            this.colorButton.Size = new System.Drawing.Size(151, 41);
-            this.colorButton.TabIndex = 3;
-            this.colorButton.Text = "Color...";
-            this.colorButton.UseVisualStyleBackColor = true;
-            // 
-            // invertButton
-            // 
-            this.invertButton.Location = new System.Drawing.Point(657, 55);
-            this.invertButton.Name = "invertButton";
-            this.invertButton.Size = new System.Drawing.Size(151, 41);
-            this.invertButton.TabIndex = 4;
-            this.invertButton.Text = "Invert";
-            this.invertButton.UseVisualStyleBackColor = true;
-            this.invertButton.Click += new System.EventHandler(this.InvertButton_Click);
+            this.imageView.Location = new System.Drawing.Point(29, 37);
+            this.imageView.Name = "imageView";
+            this.imageView.Size = new System.Drawing.Size(848, 567);
+            this.imageView.TabIndex = 3;
+            this.imageView.TabStop = false;
             // 
             // PhotoEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(911, 874);
+            this.Controls.Add(this.imageView);
             this.Controls.Add(this.userControls);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.cancelButton);
@@ -113,6 +124,7 @@
             this.userControls.ResumeLayout(false);
             this.userControls.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imageView)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -125,5 +137,6 @@
         private System.Windows.Forms.TrackBar brightnessBar;
         private System.Windows.Forms.Button invertButton;
         private System.Windows.Forms.Button colorButton;
+        private System.Windows.Forms.PictureBox imageView;
     }
 }
