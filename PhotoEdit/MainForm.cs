@@ -71,6 +71,7 @@ namespace PhotoEdit
 
             // Show default view
             currentDirectoryImagesView.View = View.Details;
+            detailToolStripMenuItem.Checked = true;
         }
 
         // Recursively discovers all the subdirectories from one root directory
@@ -264,6 +265,33 @@ namespace PhotoEdit
         private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void ViewSubMenuItem_Click(object sender, EventArgs e)
+        {
+            // Uncheck the already checked menu item
+            foreach (ToolStripMenuItem item in viewToolStripMenuItem.DropDownItems)
+            {
+                if (item.Checked) item.Checked = false;
+            }
+
+            // Check the menu item that triggered the event
+            ToolStripMenuItem selectedItem = (ToolStripMenuItem)sender;
+            selectedItem.Checked = true;
+
+            // Change the ListView.View to the corresponding menu item
+            if (selectedItem.Text == "Details")
+            {
+                currentDirectoryImagesView.View = View.Details;
+            } 
+            else if(selectedItem.Text == "Large")
+            {
+                currentDirectoryImagesView.View = View.LargeIcon;
+            }
+            else if(selectedItem.Text == "Small")
+            {
+                currentDirectoryImagesView.View = View.SmallIcon;
+            }
         }
     }
 }
