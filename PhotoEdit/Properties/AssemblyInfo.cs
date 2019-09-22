@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("PhotoEdit")]
-[assembly: AssemblyDescription("PhotoEdit was written by Caleb Rudder and Jeremy Campbell. Use this application if you want to tweak the color settings on any of your photos!")]
+[assembly: AssemblyDescription("PhotoEdit was written by Caleb Rudder and Jeremy Campbell. Use this application if you want to tweak the color settings on any of your photos! Icons found at https://www.iconfinder.com/")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("PhotoEdit")]
