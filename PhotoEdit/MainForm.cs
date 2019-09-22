@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -237,6 +238,25 @@ namespace PhotoEdit
             PhotoEditForm photoEditForm = new PhotoEditForm();
 
             photoEditForm.ShowDialog();
+        }
+
+        private void LocateOnDiskToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Get selected file
+                string imagePath = (string)currentDirectoryImagesView.SelectedItems[0].Tag;
+
+                // https://stackoverflow.com/a/47182791
+                Process.Start("explorer.exe", "/select,\"" + imagePath + "\"");
+            }
+            catch
+            {
+                MessageBox.Show("First select an image, then choose this option to see its location on disk.", 
+                    "No Image Selected", 
+                    MessageBoxButtons.OK, 
+                    MessageBoxIcon.Information);
+            }
         }
     }
 }
