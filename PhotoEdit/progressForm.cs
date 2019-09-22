@@ -17,5 +17,10 @@ namespace PhotoEdit
             InitializeComponent();
         }
 
+        public int ProgressBarValue
+        {
+            get { return (this.transformationProgress.Value);  }
+            set { this.transformationProgress.Value = value; }
+        }
     }
 }
