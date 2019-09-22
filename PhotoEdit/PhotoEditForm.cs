@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,16 +13,17 @@ namespace PhotoEdit
 {
     public partial class PhotoEditForm : Form
     {
+        public Bitmap selectedPhoto;
         public PhotoEditForm(String filePath)
         {
-            var selectedPhoto = new Bitmap(Image.FromFile(filePath));
+            selectedPhoto = new Bitmap(Image.FromFile(filePath));
             InitializeComponent();
             imageView.BackgroundImage = selectedPhoto;
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void cancelButton_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         async private void BrightnessBar_Scroll(object sender, EventArgs e)
@@ -29,14 +31,14 @@ namespace PhotoEdit
             await ChangeImageBrightness(brightnessBar.Value);
         }
 
-        private void InvertButton_Click(object sender, EventArgs e)
+        async private void InvertButton_Click(object sender, EventArgs e)
         {
-
+            await InvertColors();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            
+            selectedPhoto.Save("", ImageFormat.Jpeg);
         }
 
         async Task ChangeImageBrightness(int value)
@@ -46,6 +48,31 @@ namespace PhotoEdit
 
 
             });
+        }
+
+        async Task InvertColors()
+        {
+            await Task.Run(() =>
+            {
+
+                for (int y = 0; y < selectedPhoto.Height; y++)
+                {
+                    for (int x = 0; x < selectedPhoto.Width; x++)
+                    {
+                        Color color = selectedPhoto.GetPixel(x, y);
+                        int newRed = Math.Abs(color.R - 255);
+                        int newGreen = Math.Abs(color.G - 255);
+                        int newBlue = Math.Abs(color.B - 255);
+                        Color newColor = Color.FromArgb(newRed, newGreen, newBlue);
+                        selectedPhoto.SetPixel(x, y, newColor);
+                    }
+                }
+            });
+        }
+
+        private void ColorButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
