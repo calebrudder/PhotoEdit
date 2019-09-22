@@ -19,8 +19,10 @@ namespace PhotoEdit
         {
             selectedPhoto = new Bitmap(Image.FromFile(filePath));
             editedPhoto = new Bitmap(Image.FromFile(filePath));
+
             InitializeComponent();
             imageView.BackgroundImage = selectedPhoto;
+
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -30,16 +32,22 @@ namespace PhotoEdit
 
         async private void BrightnessBar_Scroll(object sender, EventArgs e)
         {
+            progressForm progress = new progressForm();
+            progress.ShowDialog();
             await ChangeImageBrightness(brightnessBar.Value);
         }
 
         async private void InvertButton_Click(object sender, EventArgs e)
         {
+            progressForm progress = new progressForm();
+            progress.ShowDialog();
             await InvertColors();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
+            progressForm progress = new progressForm();
+            progress.ShowDialog();
             selectedPhoto.Save("", ImageFormat.Jpeg);
         }
 
