@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,6 +17,7 @@ namespace PhotoEdit
         private DirectoryInfo rootDir;
         private ImageList largeImageList;
         private ImageList smallImageList;
+        private CancellationTokenSource cancellationTokenSource;
 
         public MainForm()
         {
@@ -60,7 +62,7 @@ namespace PhotoEdit
             // Add columns
             currentDirectoryImagesView.Columns.Add("Name", 300, HorizontalAlignment.Left);
             currentDirectoryImagesView.Columns.Add("Date", 150, HorizontalAlignment.Left);
-            currentDirectoryImagesView.Columns.Add("Size", 100, HorizontalAlignment.Left);
+            currentDirectoryImagesView.Columns.Add("Size", 75, HorizontalAlignment.Left);
 
             // Add ImageLists
             currentDirectoryImagesView.SmallImageList = smallImageList;
@@ -85,22 +87,39 @@ namespace PhotoEdit
 
         private async void CurrentDirectoryTreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            // Cancel the task (assume the token is not null when task is running)
+            if (cancellationTokenSource != null)
+            {
+                cancellationTokenSource.Cancel();
+            }
+
+            // Make a new cancellationTokenSource
+            cancellationTokenSource = new CancellationTokenSource();
+            var token = cancellationTokenSource.Token;
+
+            // Clear lists that possibly have old directory data
+            currentDirectoryImagesView.Items.Clear();
             ClearImageLists();
+
+            // Get the new directory path
             string dirPath = (string)currentDirectoryTreeView.SelectedNode.Tag;
 
-            readImagesProgressBar.Visible = true;
-            await PopulateImages(dirPath);
-            readImagesProgressBar.Visible = false;
+            await PopulateImages(dirPath, token);
         }
 
-        private async Task PopulateImages(string dirPath)
+        private async Task PopulateImages(string dirPath, CancellationToken token)
         {
+            if (!token.IsCancellationRequested)
+                readImagesProgressBar.Visible = true;
+
             await Task.Run(() =>
             {
                 DirectoryInfo rootDir = new DirectoryInfo(dirPath);
                 FileInfo[] imageFiles = rootDir.GetFiles("*.jpg");
                 foreach (FileInfo file in imageFiles)
                 {
+                    if (token.IsCancellationRequested) break;
+
                     Image img = GetImageFromFile(file.FullName);
 
                     if (img == null)
@@ -114,7 +133,8 @@ namespace PhotoEdit
                     // Add image to image list
                     Invoke((Action)delegate
                     {
-                        newImageIndex = AddImageToImageLists(img);
+                        if (!token.IsCancellationRequested)
+                            newImageIndex = AddImageToImageLists(img);
                     });
 
                     ListViewItem item = CreateListViewItem(file, newImageIndex);
@@ -122,10 +142,14 @@ namespace PhotoEdit
                     // Add ListViewItem to ListView
                     Invoke((Action)delegate
                     {
-                        currentDirectoryImagesView.Items.Add(item);
+                        if (!token.IsCancellationRequested)
+                            currentDirectoryImagesView.Items.Add(item);
                     });
                 }
-            });
+            }, token);
+
+            if (!token.IsCancellationRequested)
+                readImagesProgressBar.Visible = false;
         }
 
         private Image GetImageFromFile(string filePath)
