@@ -20,6 +20,7 @@ namespace PhotoEdit
         private DirectoryInfo rootDir;
         private ImageList largeImageList;
         private ImageList smallImageList;
+        private ImageList treeViewImageList;
         private CancellationTokenSource cancellationTokenSource;
 
         public MainForm()
@@ -42,6 +43,13 @@ namespace PhotoEdit
 
             PopulateDirectoryTreeView(rootDir, currentDirectoryTreeView.Nodes);
             currentDirectoryTreeView.Nodes[0].Expand();
+
+            // Set up the ImageList
+            treeViewImageList = new ImageList();
+            treeViewImageList.Images.Add(new Bitmap(GetType(), "Images.folderIcon.png"));
+            treeViewImageList.ColorDepth = ColorDepth.Depth32Bit;
+
+            currentDirectoryTreeView.ImageList = treeViewImageList;
 
             // "Select" the first node so the first directory is populated with images
             currentDirectoryTreeView.SelectedNode = currentDirectoryTreeView.Nodes[0];
