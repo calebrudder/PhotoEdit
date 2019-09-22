@@ -49,7 +49,7 @@
             this.cancelButton.TabIndex = 0;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.Button1_Click);
+            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
             // 
             // saveButton
             // 
@@ -90,6 +90,7 @@
             this.colorButton.TabIndex = 3;
             this.colorButton.Text = "Color...";
             this.colorButton.UseVisualStyleBackColor = true;
+            this.colorButton.Click += new System.EventHandler(this.ColorButton_Click);
             // 
             // brightnessBar
             // 
@@ -104,6 +105,7 @@
             // 
             // imageView
             // 
+            this.imageView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.imageView.Location = new System.Drawing.Point(29, 37);
             this.imageView.Name = "imageView";
             this.imageView.Size = new System.Drawing.Size(848, 567);
