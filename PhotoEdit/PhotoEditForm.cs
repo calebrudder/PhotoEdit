@@ -14,9 +14,11 @@ namespace PhotoEdit
     public partial class PhotoEditForm : Form
     {
         public Bitmap selectedPhoto;
+        public Bitmap editedPhoto;
         public PhotoEditForm(String filePath)
         {
             selectedPhoto = new Bitmap(Image.FromFile(filePath));
+            editedPhoto = new Bitmap(Image.FromFile(filePath));
             InitializeComponent();
             imageView.BackgroundImage = selectedPhoto;
         }
