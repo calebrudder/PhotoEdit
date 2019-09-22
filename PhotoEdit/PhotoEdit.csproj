@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{420FF546-E7B0-4BFA-A282-2B0010593DEA}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>WinExe</OutputType>
     <RootNamespace>PhotoEdit</RootNamespace>
     <AssemblyName>PhotoEdit</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
@@ -122,7 +122,7 @@
     <EmbeddedResource Include="Images\folderIcon.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Images\mainIcon.png" />
+    <Content Include="Images\mainIcon.ico" />
     <Content Include="mainIcon.ico" />
   </ItemGroup>
   <ItemGroup>
