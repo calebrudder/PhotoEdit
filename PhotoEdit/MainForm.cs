@@ -25,6 +25,8 @@ namespace PhotoEdit
             InitializeTreeView(Environment.GetFolderPath(Environment.SpecialFolder.MyPictures));
             InitializeImageLists();
             InitializeListView();
+
+            readImagesProgressBar.Visible = false;
         }
 
         private void InitializeTreeView(string rootPath)
@@ -85,7 +87,10 @@ namespace PhotoEdit
         {
             ClearImageLists();
             string dirPath = (string)currentDirectoryTreeView.SelectedNode.Tag;
+
+            readImagesProgressBar.Visible = true;
             await PopulateImages(dirPath);
+            readImagesProgressBar.Visible = false;
         }
 
         private async Task PopulateImages(string dirPath)
