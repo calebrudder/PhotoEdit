@@ -114,20 +114,23 @@
             // detailToolStripMenuItem
             // 
             this.detailToolStripMenuItem.Name = "detailToolStripMenuItem";
-            this.detailToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
-            this.detailToolStripMenuItem.Text = "Detail";
+            this.detailToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.detailToolStripMenuItem.Text = "Details";
+            this.detailToolStripMenuItem.Click += new System.EventHandler(this.ViewSubMenuItem_Click);
             // 
             // smallToolStripMenuItem
             // 
             this.smallToolStripMenuItem.Name = "smallToolStripMenuItem";
-            this.smallToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
+            this.smallToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.smallToolStripMenuItem.Text = "Small";
+            this.smallToolStripMenuItem.Click += new System.EventHandler(this.ViewSubMenuItem_Click);
             // 
             // largeToolStripMenuItem
             // 
             this.largeToolStripMenuItem.Name = "largeToolStripMenuItem";
-            this.largeToolStripMenuItem.Size = new System.Drawing.Size(132, 26);
+            this.largeToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.largeToolStripMenuItem.Text = "Large";
+            this.largeToolStripMenuItem.Click += new System.EventHandler(this.ViewSubMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
