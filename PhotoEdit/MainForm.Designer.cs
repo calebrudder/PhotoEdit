@@ -79,20 +79,23 @@
             // locateOnDiskToolStripMenuItem
             // 
             this.locateOnDiskToolStripMenuItem.Name = "locateOnDiskToolStripMenuItem";
-            this.locateOnDiskToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.locateOnDiskToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl+L";
+            this.locateOnDiskToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.L)));
+            this.locateOnDiskToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.locateOnDiskToolStripMenuItem.Text = "Locate On Disk";
+            this.locateOnDiskToolStripMenuItem.Click += new System.EventHandler(this.LocateOnDiskToolStripMenuItem_Click);
             // 
             // selectRootFolderToolStripMenuItem
             // 
             this.selectRootFolderToolStripMenuItem.Name = "selectRootFolderToolStripMenuItem";
-            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.selectRootFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.selectRootFolderToolStripMenuItem.Text = "Select Root Folder";
             this.selectRootFolderToolStripMenuItem.Click += new System.EventHandler(this.SelectRootFolderToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.exitToolStripMenuItem.Text = "Exit";
             // 
             // viewToolStripMenuItem
