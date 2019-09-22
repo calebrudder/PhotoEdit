@@ -41,14 +41,15 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentDirectoryImagesView = new System.Windows.Forms.ListView();
+            this.readImagesProgressBar = new System.Windows.Forms.ProgressBar();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // currentDirectoryTreeView
             // 
-            this.currentDirectoryTreeView.Location = new System.Drawing.Point(12, 31);
+            this.currentDirectoryTreeView.Location = new System.Drawing.Point(12, 55);
             this.currentDirectoryTreeView.Name = "currentDirectoryTreeView";
-            this.currentDirectoryTreeView.Size = new System.Drawing.Size(253, 724);
+            this.currentDirectoryTreeView.Size = new System.Drawing.Size(253, 700);
             this.currentDirectoryTreeView.TabIndex = 0;
             this.currentDirectoryTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.CurrentDirectoryTreeView_AfterSelect);
             // 
@@ -139,19 +140,28 @@
             // currentDirectoryImagesView
             // 
             this.currentDirectoryImagesView.HideSelection = false;
-            this.currentDirectoryImagesView.Location = new System.Drawing.Point(271, 31);
+            this.currentDirectoryImagesView.Location = new System.Drawing.Point(271, 55);
             this.currentDirectoryImagesView.MultiSelect = false;
             this.currentDirectoryImagesView.Name = "currentDirectoryImagesView";
-            this.currentDirectoryImagesView.Size = new System.Drawing.Size(733, 724);
+            this.currentDirectoryImagesView.Size = new System.Drawing.Size(733, 700);
             this.currentDirectoryImagesView.TabIndex = 2;
             this.currentDirectoryImagesView.UseCompatibleStateImageBehavior = false;
             this.currentDirectoryImagesView.ItemActivate += new System.EventHandler(this.CurrentDirectoryImagesView_ItemActivate);
+            // 
+            // readImagesProgressBar
+            // 
+            this.readImagesProgressBar.Location = new System.Drawing.Point(12, 39);
+            this.readImagesProgressBar.Name = "readImagesProgressBar";
+            this.readImagesProgressBar.Size = new System.Drawing.Size(992, 10);
+            this.readImagesProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.readImagesProgressBar.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 767);
+            this.Controls.Add(this.readImagesProgressBar);
             this.Controls.Add(this.currentDirectoryImagesView);
             this.Controls.Add(this.currentDirectoryTreeView);
             this.Controls.Add(this.mainMenuStrip);
@@ -180,6 +190,7 @@
         private System.Windows.Forms.ToolStripMenuItem smallToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem largeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+        private System.Windows.Forms.ProgressBar readImagesProgressBar;
     }
 }
 
