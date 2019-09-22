@@ -42,6 +42,7 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.currentDirectoryImagesView = new System.Windows.Forms.ListView();
             this.readImagesProgressBar = new System.Windows.Forms.ProgressBar();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mainMenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -71,6 +72,7 @@
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.locateOnDiskToolStripMenuItem,
             this.selectRootFolderToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
@@ -95,8 +97,9 @@
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // viewToolStripMenuItem
             // 
@@ -159,6 +162,11 @@
             this.readImagesProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.readImagesProgressBar.TabIndex = 3;
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(237, 6);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -194,6 +202,7 @@
         private System.Windows.Forms.ToolStripMenuItem largeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.ProgressBar readImagesProgressBar;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
     }
 }
 

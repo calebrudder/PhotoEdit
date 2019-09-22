@@ -242,6 +242,8 @@ namespace PhotoEdit
 
         private void LocateOnDiskToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            // Open Windows File Explorer and select the image that is selected in
+            // the ListView
             try
             {
                 // Get selected file
@@ -257,6 +259,11 @@ namespace PhotoEdit
                     MessageBoxButtons.OK, 
                     MessageBoxIcon.Information);
             }
+        }
+
+        private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }
