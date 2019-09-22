@@ -59,7 +59,7 @@
             this.currentDirectoryTreeView.Location = new System.Drawing.Point(3, 3);
             this.currentDirectoryTreeView.MinimumSize = new System.Drawing.Size(100, 100);
             this.currentDirectoryTreeView.Name = "currentDirectoryTreeView";
-            this.currentDirectoryTreeView.Size = new System.Drawing.Size(324, 694);
+            this.currentDirectoryTreeView.Size = new System.Drawing.Size(351, 615);
             this.currentDirectoryTreeView.TabIndex = 0;
             this.currentDirectoryTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.CurrentDirectoryTreeView_AfterSelect);
             // 
@@ -72,7 +72,7 @@
             this.helpToolStripMenuItem});
             this.mainMenuStrip.Location = new System.Drawing.Point(0, 0);
             this.mainMenuStrip.Name = "mainMenuStrip";
-            this.mainMenuStrip.Size = new System.Drawing.Size(1016, 30);
+            this.mainMenuStrip.Size = new System.Drawing.Size(1098, 28);
             this.mainMenuStrip.TabIndex = 1;
             this.mainMenuStrip.Text = "menuStrip1";
             // 
@@ -84,7 +84,7 @@
             this.toolStripMenuItem1,
             this.exitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "&File";
             // 
             // locateOnDiskToolStripMenuItem
@@ -122,7 +122,7 @@
             this.smallToolStripMenuItem,
             this.largeToolStripMenuItem});
             this.viewToolStripMenuItem.Name = "viewToolStripMenuItem";
-            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
+            this.viewToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.viewToolStripMenuItem.Text = "&View";
             // 
             // detailToolStripMenuItem
@@ -151,7 +151,7 @@
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 26);
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
             this.helpToolStripMenuItem.Text = "&Help";
             // 
             // aboutToolStripMenuItem
@@ -171,7 +171,7 @@
             this.currentDirectoryImagesView.MinimumSize = new System.Drawing.Size(100, 100);
             this.currentDirectoryImagesView.MultiSelect = false;
             this.currentDirectoryImagesView.Name = "currentDirectoryImagesView";
-            this.currentDirectoryImagesView.Size = new System.Drawing.Size(652, 694);
+            this.currentDirectoryImagesView.Size = new System.Drawing.Size(707, 615);
             this.currentDirectoryImagesView.TabIndex = 2;
             this.currentDirectoryImagesView.UseCompatibleStateImageBehavior = false;
             this.currentDirectoryImagesView.ItemActivate += new System.EventHandler(this.CurrentDirectoryImagesView_ItemActivate);
@@ -180,7 +180,7 @@
             // 
             this.readImagesProgressBar.Location = new System.Drawing.Point(12, 39);
             this.readImagesProgressBar.Name = "readImagesProgressBar";
-            this.readImagesProgressBar.Size = new System.Drawing.Size(992, 10);
+            this.readImagesProgressBar.Size = new System.Drawing.Size(1071, 10);
             this.readImagesProgressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.readImagesProgressBar.TabIndex = 3;
             // 
@@ -199,15 +199,15 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.currentDirectoryImagesView);
-            this.splitContainer.Size = new System.Drawing.Size(992, 700);
-            this.splitContainer.SplitterDistance = 330;
+            this.splitContainer.Size = new System.Drawing.Size(1074, 621);
+            this.splitContainer.SplitterDistance = 357;
             this.splitContainer.TabIndex = 4;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 767);
+            this.ClientSize = new System.Drawing.Size(1098, 688);
             this.Controls.Add(this.splitContainer);
             this.Controls.Add(this.readImagesProgressBar);
             this.Controls.Add(this.mainMenuStrip);
