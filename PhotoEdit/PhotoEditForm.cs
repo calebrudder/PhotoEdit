@@ -332,6 +332,9 @@ namespace PhotoEdit
             cancellationTokenSource.Cancel();
         }
 
+        private void BrightnessBar_Scroll(object sender, MouseEventArgs e)
+        {
 
+        }
     }
 }
