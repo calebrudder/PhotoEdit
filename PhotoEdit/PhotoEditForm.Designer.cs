@@ -36,6 +36,7 @@
             this.colorButton = new System.Windows.Forms.Button();
             this.brightnessBar = new System.Windows.Forms.TrackBar();
             this.imageView = new System.Windows.Forms.PictureBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.userControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageView)).BeginInit();
@@ -144,5 +145,6 @@
         private System.Windows.Forms.Button invertButton;
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.PictureBox imageView;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }
