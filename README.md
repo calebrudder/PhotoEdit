@@ -16,3 +16,7 @@ This program allows the user open up an image from any folder on their computer 
 ### Work done by Caleb
 * All code written in the PhotoEditForm
 * All code written in progressForm
+
+### Percentage completed by each teammate
+Jeremy - 50%  
+Caleb - 50%
