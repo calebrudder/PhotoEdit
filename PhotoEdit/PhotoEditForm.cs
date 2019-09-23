@@ -122,14 +122,22 @@ namespace PhotoEdit
                 {
                     for (int x = 0; x < editedPhoto.Width; x++)
                     {
-                        Color color = editedPhoto.GetPixel(x, y);
-                        double avgRGB = ((color.R + color.G + color.B) / 3);
-                        double percent = (avgRGB / 255) *100;
-                        int newRed = (tint.R * (int)percent)/100;
-                        int newGreen = (tint.G * (int)percent)/100;
-                        int newBlue = (tint.B * (int)percent)/100;
-                        Color newColor = Color.FromArgb(newRed, newGreen, newBlue);
-                        editedPhoto.SetPixel(x, y, newColor);
+                        if (token.IsCancellationRequested)
+                        {
+                            editedPhoto = new Bitmap(imageView.BackgroundImage);
+                            break;
+                        }
+                        else
+                        {
+                            Color color = editedPhoto.GetPixel(x, y);
+                            double avgRGB = ((color.R + color.G + color.B) / 3);
+                            double percent = (avgRGB / 255) * 100;
+                            int newRed = (tint.R * (int)percent) / 100;
+                            int newGreen = (tint.G * (int)percent) / 100;
+                            int newBlue = (tint.B * (int)percent) / 100;
+                            Color newColor = Color.FromArgb(newRed, newGreen, newBlue);
+                            editedPhoto.SetPixel(x, y, newColor);
+                        }
                     }
                 }
 
@@ -172,12 +180,14 @@ namespace PhotoEdit
                     {
                         if (token.IsCancellationRequested)
                         {
+                            editedPhoto = new Bitmap(imageView.BackgroundImage);
                             break;
                         }
                         else
                         {
-                            totalProgress = ((y+x) / totalSize) * 100;
-                            if (progressTrack != null && totalProgress >=1) {
+                            totalProgress = ((y + x) / totalSize) * 100;
+                            if (progressTrack != null && totalProgress >= 1)
+                            {
                                 progressTrack.Report(totalProgress);
                             }
                             Color color = editedPhoto.GetPixel(x, y);
