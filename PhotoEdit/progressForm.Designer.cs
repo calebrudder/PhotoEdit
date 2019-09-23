@@ -1,6 +1,6 @@
 ﻿namespace PhotoEdit
 {
-    partial class progressForm
+    partial class ProgressForm
     {
         /// <summary>
         /// Required designer variable.

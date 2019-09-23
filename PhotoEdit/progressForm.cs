@@ -10,11 +10,11 @@ using System.Windows.Forms;
 
 namespace PhotoEdit
 {
-    public partial class progressForm : Form
+    public partial class ProgressForm : Form
     {
         public delegate void cancelTask();
         public event cancelTask cancel;
-        public progressForm()
+        public ProgressForm()
         {
             InitializeComponent();
         }
