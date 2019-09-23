@@ -12,6 +12,8 @@ namespace PhotoEdit
 {
     public partial class progressForm : Form
     {
+        public delegate void cancelTask();
+        public event cancelTask cancel;
         public progressForm()
         {
             InitializeComponent();
@@ -19,6 +21,11 @@ namespace PhotoEdit
         public int ProgressBarValue
         {
             set { this.transformationProgress.Value = value; }
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+            cancel?.Invoke();
         }
     }
 }
