@@ -32,11 +32,14 @@
             this.cancelButton = new System.Windows.Forms.Button();
             this.saveButton = new System.Windows.Forms.Button();
             this.userControls = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.invertButton = new System.Windows.Forms.Button();
             this.colorButton = new System.Windows.Forms.Button();
             this.brightnessBar = new System.Windows.Forms.TrackBar();
             this.imageView = new System.Windows.Forms.PictureBox();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.userControls.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.brightnessBar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.imageView)).BeginInit();
@@ -75,14 +78,26 @@
             this.userControls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.userControls.Controls.Add(this.label3);
+            this.userControls.Controls.Add(this.label2);
+            this.userControls.Controls.Add(this.label1);
             this.userControls.Controls.Add(this.invertButton);
             this.userControls.Controls.Add(this.colorButton);
             this.userControls.Controls.Add(this.brightnessBar);
             this.userControls.Location = new System.Drawing.Point(28, 622);
             this.userControls.Name = "userControls";
-            this.userControls.Size = new System.Drawing.Size(848, 134);
+            this.userControls.Size = new System.Drawing.Size(848, 169);
             this.userControls.TabIndex = 2;
             this.userControls.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(303, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 25);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Light";
             // 
             // invertButton
             // 
@@ -129,6 +144,24 @@
             this.imageView.TabIndex = 3;
             this.imageView.TabStop = false;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(50, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(57, 25);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Dark";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(164, 141);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(114, 25);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Brightness";
+            // 
             // PhotoEditForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -160,5 +193,8 @@
         private System.Windows.Forms.Button colorButton;
         private System.Windows.Forms.PictureBox imageView;
         private System.Windows.Forms.ColorDialog colorDialog1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

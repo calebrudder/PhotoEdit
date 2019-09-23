@@ -332,6 +332,5 @@ namespace PhotoEdit
             cancellationTokenSource.Cancel();
         }
 
-
     }
 }
