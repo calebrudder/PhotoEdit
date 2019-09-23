@@ -108,12 +108,12 @@
             // 
             this.brightnessBar.BackColor = System.Drawing.SystemColors.Control;
             this.brightnessBar.LargeChange = 25;
-            this.brightnessBar.Location = new System.Drawing.Point(55, 38);
+            this.brightnessBar.Location = new System.Drawing.Point(55, 53);
             this.brightnessBar.Maximum = 100;
             this.brightnessBar.Name = "brightnessBar";
             this.brightnessBar.Size = new System.Drawing.Size(326, 90);
             this.brightnessBar.TabIndex = 0;
-            this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.Both;
+            this.brightnessBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.brightnessBar.Value = 50;
             this.brightnessBar.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BrightnessBar_Scroll);
             // 
