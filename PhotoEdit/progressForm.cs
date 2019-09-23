@@ -20,7 +20,13 @@ namespace PhotoEdit
         }
         public int ProgressBarValue
         {
-            set { this.transformationProgress.Value = value; }
+            get { return this.transformationProgress.Value; }
+            set {
+                if (this.transformationProgress.Value <= 95)
+                {
+                    this.transformationProgress.Value += 5;
+                }
+            }
         }
 
         private void CancelButton_Click(object sender, EventArgs e)

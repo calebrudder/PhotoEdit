@@ -47,6 +47,8 @@ namespace PhotoEdit
             progress = new progressForm();
             progress.cancel += cancelTask;
             progress.Show();
+            progress.Left = this.Left + 75;
+            progress.Top = this.Top + 80;
 
             var progressTrack = new Progress<int>(percent =>
             {
@@ -72,6 +74,8 @@ namespace PhotoEdit
                 progress = new progressForm();
                 progress.cancel += cancelTask;
                 progress.Show();
+                progress.Left = this.Left + 75;
+                progress.Top = this.Top + 80;
 
                 await TintColors(selectedColor);
 
@@ -87,16 +91,14 @@ namespace PhotoEdit
             cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
 
-            var progressTrack = new Progress<int>(percent =>
-            {
-                progress.ProgressBarValue = percent;
-            });
-
             editedPhoto = new Bitmap(imageView.BackgroundImage);
             progress = new progressForm();
             progress.cancel += cancelTask;
             progress.Show();
-            await InvertColors(token, progressTrack);
+            progress.Left = this.Left + 75;
+            progress.Top = this.Top + 80;
+
+            await InvertColors(token);
             progress.Close();
             this.BringToFront();
             imageView.BackgroundImage = editedPhoto;
@@ -125,15 +127,24 @@ namespace PhotoEdit
 
                 for (int y = 0; y < editedPhoto.Height; y++)
                 {
-                    for (int x = 0; x < editedPhoto.Width; x++)
+                    double partial = .05 * editedPhoto.Height;
+
+                    if (y % (int)partial == 0)
                     {
-                        if (token.IsCancellationRequested)
+                        Invoke((Action)delegate ()
                         {
-                            editedPhoto = new Bitmap(imageView.BackgroundImage);
-                            break;
-                        }
-                        else
-                        {
+                            progress.ProgressBarValue++;
+                        });
+                    }
+                    if (token.IsCancellationRequested)
+                    {
+                        editedPhoto = new Bitmap(imageView.BackgroundImage);
+                        break;
+                    }
+                    else
+                    {
+                        for (int x = 0; x < editedPhoto.Width; x++)
+                    {
                             Color color = editedPhoto.GetPixel(x, y);
                             double avgRGB = ((color.R + color.G + color.B) / 3);
                             double percent = (avgRGB / 255) * 100;
@@ -159,7 +170,7 @@ namespace PhotoEdit
 
 
         }
-        async Task InvertColors(CancellationToken token, IProgress<int> progressTrack)
+        async Task InvertColors(CancellationToken token)
         {
 
 
@@ -175,11 +186,19 @@ namespace PhotoEdit
                 });
                 UseWaitCursor = true;
 
-                int totalSize = (editedPhoto.Height) * (editedPhoto.Width);
-                int totalProgress;
+
 
                 for (int y = 0; y < editedPhoto.Height; y++)
                 {
+                    double partial = .05 * editedPhoto.Height;
+          
+                    if(y%(int)partial == 0)
+                    {
+                        Invoke((Action)delegate ()
+                        {
+                            progress.ProgressBarValue++;
+                        });
+                    }
                     if (token.IsCancellationRequested)
                     {
                         editedPhoto = new Bitmap(imageView.BackgroundImage);
@@ -189,12 +208,7 @@ namespace PhotoEdit
                     {
                         for (int x = 0; x < editedPhoto.Width; x++)
                         {
-
-                            totalProgress = ((y + x) / totalSize) * 100;
-                            if (progressTrack != null && totalProgress >= 1)
-                            {
-                                progressTrack.Report(totalProgress);
-                            }
+                            
                             Color color = editedPhoto.GetPixel(x, y);
                             int newRed = Math.Abs(color.R - 255);
                             int newGreen = Math.Abs(color.G - 255);
@@ -241,17 +255,30 @@ namespace PhotoEdit
 
                 for (int y = 0; y < editedPhoto.Height; y++)
                 {
-                    for (int x = 0; x < editedPhoto.Width; x++)
+                    double partial = .05 * editedPhoto.Height;
+
+                    if (y % (int)partial == 0)
                     {
-                        if (token.IsCancellationRequested)
+                        Invoke((Action)delegate ()
                         {
-                            editedPhoto = new Bitmap(imageView.BackgroundImage);
-                            break;
-                        }
-                        else
+                            progress.ProgressBarValue++;
+                        });
+                    }
+                    if (token.IsCancellationRequested)
+                    {
+                        Invoke((Action)delegate ()
+                        {
+                            this.brightnessBar.Value = 50;
+                        });
+                        editedPhoto = new Bitmap(imageView.BackgroundImage);
+                        break;
+                    }
+                    else
+                    {
+                        for (int x = 0; x < editedPhoto.Width; x++)
                         {
 
-                            Color color = selectedPhoto.GetPixel(x, y);
+                            Color color = editedPhoto.GetPixel(x, y);
                             int newRed = (color.R - value);
                             if (newRed > 255)
                             {

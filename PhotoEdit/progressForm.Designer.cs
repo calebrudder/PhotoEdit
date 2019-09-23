@@ -69,9 +69,11 @@
             this.Controls.Add(this.waitLabel);
             this.Controls.Add(this.transformationProgress);
             this.Controls.Add(this.cancelButton);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "progressForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Transforming";
             this.ResumeLayout(false);
             this.PerformLayout();

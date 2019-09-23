@@ -44,6 +44,9 @@
             // 
             // cancelButton
             // 
+            this.cancelButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.cancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.cancelButton.Location = new System.Drawing.Point(736, 797);
             this.cancelButton.Name = "cancelButton";
@@ -55,6 +58,9 @@
             // 
             // saveButton
             // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.saveButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.saveButton.Location = new System.Drawing.Point(578, 797);
             this.saveButton.Name = "saveButton";
@@ -65,6 +71,9 @@
             // 
             // userControls
             // 
+            this.userControls.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.userControls.Controls.Add(this.invertButton);
             this.userControls.Controls.Add(this.colorButton);
             this.userControls.Controls.Add(this.brightnessBar);
@@ -109,6 +118,9 @@
             // 
             // imageView
             // 
+            this.imageView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.imageView.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.imageView.Location = new System.Drawing.Point(28, 38);
             this.imageView.Name = "imageView";
@@ -127,6 +139,7 @@
             this.Controls.Add(this.cancelButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "PhotoEditForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "PhotoEditForm";
             this.userControls.ResumeLayout(false);
             this.userControls.PerformLayout();
