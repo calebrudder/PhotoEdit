@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -22,7 +23,9 @@ namespace PhotoEdit
         public PhotoEditForm(String filePath)
         {
             path = filePath;
-            selectedPhoto = new Bitmap(Image.FromFile(filePath));
+            byte[] bytes = System.IO.File.ReadAllBytes(filePath);
+            MemoryStream ms = new MemoryStream(bytes);
+            selectedPhoto = new Bitmap(Image.FromStream(ms));
 
             InitializeComponent();
             imageView.BackgroundImage = selectedPhoto;
@@ -34,7 +37,7 @@ namespace PhotoEdit
         {
             Close();
         }
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click_1(object sender, EventArgs e)
         {
             editedPhoto = new Bitmap(imageView.BackgroundImage);
             editedPhoto.Save(path, ImageFormat.Jpeg);
@@ -338,6 +341,7 @@ namespace PhotoEdit
         {
             cancellationTokenSource.Cancel();
         }
+
 
     }
 }
