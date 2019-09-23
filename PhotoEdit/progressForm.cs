@@ -12,8 +12,8 @@ namespace PhotoEdit
 {
     public partial class ProgressForm : Form
     {
-        public delegate void cancelTask();
-        public event cancelTask cancel;
+        public delegate void CancelTask();
+        public event CancelTask cancel;
         public ProgressForm()
         {
             InitializeComponent();

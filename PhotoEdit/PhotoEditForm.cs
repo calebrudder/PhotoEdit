@@ -17,7 +17,7 @@ namespace PhotoEdit
     {
         private Bitmap selectedPhoto;
         private Bitmap editedPhoto;
-        private progressForm progress;
+        private ProgressForm progress;
         private CancellationTokenSource cancellationTokenSource;
         private String path;
         public PhotoEditForm(String filePath)
@@ -49,8 +49,8 @@ namespace PhotoEdit
         {
             editedPhoto = new Bitmap(imageView.BackgroundImage);
             int amount = Convert.ToInt32(2 * (50 - brightnessBar.Value) * 0.01 * 255);
-            progress = new progressForm();
-            progress.cancel += cancelTask;
+            progress = new ProgressForm();
+            progress.cancel += CancelTask;
             progress.Show();
             progress.Left = this.Left + 75;
             progress.Top = this.Top + 80;
@@ -71,8 +71,8 @@ namespace PhotoEdit
                 selectedColor = colorDialog1.Color;
 
                 editedPhoto = new Bitmap(imageView.BackgroundImage);
-                progress = new progressForm();
-                progress.cancel += cancelTask;
+                progress = new ProgressForm();
+                progress.cancel += CancelTask;
                 progress.Show();
                 progress.Left = this.Left + 75;
                 progress.Top = this.Top + 80;
@@ -92,8 +92,8 @@ namespace PhotoEdit
             var token = cancellationTokenSource.Token;
 
             editedPhoto = new Bitmap(imageView.BackgroundImage);
-            progress = new progressForm();
-            progress.cancel += cancelTask;
+            progress = new ProgressForm();
+            progress.cancel += CancelTask;
             progress.Show();
             progress.Left = this.Left + 75;
             progress.Top = this.Top + 80;
@@ -327,7 +327,7 @@ namespace PhotoEdit
             });
         }
 
-        private void cancelTask()
+        private void CancelTask()
         {
             cancellationTokenSource.Cancel();
         }
