@@ -16,16 +16,14 @@ namespace PhotoEdit
     {
         private Bitmap selectedPhoto;
         private Bitmap editedPhoto;
-        private progressForm progress = new progressForm();
+        private progressForm progress;
         private CancellationTokenSource cancellationTokenSource;
         public PhotoEditForm(String filePath)
         {
             selectedPhoto = new Bitmap(Image.FromFile(filePath));
-            editedPhoto = new Bitmap(Image.FromFile(filePath));
 
             InitializeComponent();
             imageView.BackgroundImage = selectedPhoto;
-
         }
 
         private void cancelButton_Click(object sender, EventArgs e)
@@ -35,40 +33,139 @@ namespace PhotoEdit
 
         async private void BrightnessBar_Scroll(object sender, EventArgs e)
         {
-            
-            await ChangeImageBrightness(brightnessBar.Value);
+            editedPhoto = new Bitmap(imageView.BackgroundImage);
+            int amount = Convert.ToInt32(2 * (50 - brightnessBar.Value) * 0.01 * 255);
+            progress = new progressForm();
+            progress.Show();
+
+            await ChangeImageBrightness(amount);
+
+            progress.Close();
+            this.BringToFront();
+            imageView.BackgroundImage = editedPhoto;
         }
 
         async private void InvertButton_Click(object sender, EventArgs e)
         {
-            await InvertColors();
+
+            var progressTrack = new Progress<int>(percent =>
+            {
+                progress.ProgressBarValue = percent;
+            });
+
+            editedPhoto = new Bitmap(imageView.BackgroundImage);
+            progress = new progressForm();
+            progress.Show();
+            await InvertColors(progressTrack);
+            progress.Close();
+            this.BringToFront();
             imageView.BackgroundImage = editedPhoto;
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
         {
-            selectedPhoto.Save("", ImageFormat.Jpeg);
+            editedPhoto = new Bitmap(imageView.BackgroundImage);
+            editedPhoto.Save("", ImageFormat.Jpeg);
         }
 
         async Task ChangeImageBrightness(int value)
         {
             await Task.Run(() =>
             {
+                Invoke((Action)delegate ()
+                {
+                    this.cancelButton.Enabled = false;
+                    this.saveButton.Enabled = false;
+                    this.invertButton.Enabled = false;
+                    this.colorButton.Enabled = false;
+                    this.brightnessBar.Enabled = false;
+                });
+                UseWaitCursor = true;
 
+                cancellationTokenSource = new CancellationTokenSource();
+                var token = cancellationTokenSource.Token;
 
+                for (int y = 0; y < editedPhoto.Height; y++)
+                {
+                    for (int x = 0; x < editedPhoto.Width; x++)
+                    {
+                        if (token.IsCancellationRequested)
+                        {
+                            editedPhoto = new Bitmap(imageView.BackgroundImage);
+                            break;
+                        }
+                        else
+                        {
+
+                            Color color = selectedPhoto.GetPixel(x, y);
+                            int newRed = (color.R - value);
+                            if(newRed > 255)
+                            {
+                                newRed = 255;
+                            }
+                            if(newRed < 0)
+                            {
+                                newRed = 0;
+                            }
+
+                            int newGreen = (color.G - value);
+                            if (newGreen > 255)
+                            {
+                                newGreen = 255;
+                            }
+                            if (newGreen < 0)
+                            {
+                                newGreen = 0;
+                            }
+
+                            int newBlue = (color.B - value);
+                            if (newBlue > 255)
+                            {
+                                newBlue = 255;
+                            }
+                            if (newBlue < 0)
+                            {
+                                newBlue = 0;
+                            }
+
+                            Color newColor = Color.FromArgb(newRed, newGreen, newBlue);
+                            editedPhoto.SetPixel(x, y, newColor);
+                        }
+                    }
+
+                }
+
+                Invoke((Action)delegate ()
+                {
+                    this.cancelButton.Enabled = true;
+                    this.saveButton.Enabled = true;
+                    this.invertButton.Enabled = true;
+                    this.colorButton.Enabled = true;
+                    this.brightnessBar.Enabled = true;
+                });
+                UseWaitCursor = false;
             });
         }
 
-        async Task InvertColors()
+        async Task InvertColors(IProgress<int> progressTrack)
         {
             cancellationTokenSource = new CancellationTokenSource();
             var token = cancellationTokenSource.Token;
 
             await Task.Run(() =>
             {
+                Invoke((Action)delegate ()
+                {
+                    this.cancelButton.Enabled = false;
+                    this.saveButton.Enabled = false;
+                    this.invertButton.Enabled = false;
+                    this.colorButton.Enabled = false;
+                    this.brightnessBar.Enabled = false;
+                });
+                UseWaitCursor = true;
 
                 int totalSize = (editedPhoto.Height) * (editedPhoto.Width);
-                int totalProgress = 0;
+                int totalProgress;
 
                 for (int y = 0; y < editedPhoto.Height; y++)
                 {
@@ -80,27 +177,35 @@ namespace PhotoEdit
                         }
                         else
                         {
-                            totalProgress = (x * (y+1)) / totalSize;
-
+                            totalProgress = ((y+x) / totalSize) * 100;
+                            if (progressTrack != null && totalProgress >=1) {
+                                progressTrack.Report(totalProgress);
+                            }
                             Color color = editedPhoto.GetPixel(x, y);
                             int newRed = Math.Abs(color.R - 255);
                             int newGreen = Math.Abs(color.G - 255);
                             int newBlue = Math.Abs(color.B - 255);
                             Color newColor = Color.FromArgb(newRed, newGreen, newBlue);
                             editedPhoto.SetPixel(x, y, newColor);
+
+
                         }
                     }
                 }
+                Invoke((Action)delegate ()
+                {
+                    this.cancelButton.Enabled = true;
+                    this.saveButton.Enabled = true;
+                    this.invertButton.Enabled = true;
+                    this.colorButton.Enabled = true;
+                    this.brightnessBar.Enabled = true;
+                });
+                UseWaitCursor = false;
             });
         }
         private void ColorButton_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void UpdateTaskBar(int updatePercent)
-        {
-            progress.ProgressBarValue = updatePercent;
         }
     }
 }
