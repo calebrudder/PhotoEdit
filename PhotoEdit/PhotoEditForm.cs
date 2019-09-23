@@ -22,6 +22,7 @@ namespace PhotoEdit
         private String path;
         public PhotoEditForm(String filePath)
         {
+            //https://www.tutorialsteacher.com/csharp/csharp-stream-io
             path = filePath;
             byte[] bytes = System.IO.File.ReadAllBytes(filePath);
             MemoryStream ms = new MemoryStream(bytes);
@@ -40,6 +41,7 @@ namespace PhotoEdit
         private void SaveButton_Click_1(object sender, EventArgs e)
         {
             editedPhoto = new Bitmap(imageView.BackgroundImage);
+            // https://sites.harding.edu/fmccown/classes/comp4450-f19/Photo%20Editor.pdf
             editedPhoto.Save(path, ImageFormat.Jpeg);
         }
 
@@ -53,12 +55,7 @@ namespace PhotoEdit
             progress.Left = this.Left + 75;
             progress.Top = this.Top + 80;
 
-            var progressTrack = new Progress<int>(percent =>
-            {
-                progress.ProgressBarValue = percent;
-            });
-
-            await ChangeImageBrightness(amount, progressTrack);
+            await ChangeImageBrightness(amount);
 
             progress.Close();
             this.BringToFront();
@@ -236,10 +233,9 @@ namespace PhotoEdit
             });
         }
 
-        async Task ChangeImageBrightness(int value, IProgress<int> progressTrack)
+        async Task ChangeImageBrightness(int value)
         {
             int totalSize = (editedPhoto.Height) * (editedPhoto.Width);
-            int totalProgress;
 
             await Task.Run(() =>
             {
@@ -310,12 +306,6 @@ namespace PhotoEdit
                             if (newBlue < 0)
                             {
                                 newBlue = 0;
-                            }
-
-                            totalProgress = ((y + x) / totalSize) * 100;
-                            if (progressTrack != null && totalProgress >= 1)
-                            {
-                                progressTrack.Report(totalProgress);
                             }
 
                             Color newColor = Color.FromArgb(newRed, newGreen, newBlue);
